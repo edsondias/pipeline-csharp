@@ -1,0 +1,4 @@
+variables:
+  appName: "azu-func-pr-devops"
+  slotName: ""
+  resourceGroupName: ""

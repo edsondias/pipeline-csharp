@@ -1,0 +1,38 @@
+name: function_csharp_$(date:yyyyMMdd)$(rev:.r)
+resources:
+  repositories:
+    - repository: templates
+      # informar endpoint quando o projeto for diferente do vsplataforma
+      #endpoint: AzDevopsVSPlataforma
+      type: git
+      name: repo-pipeline
+      #name: VSPlataforma/repo-pipeline
+      ref: release/esteira
+
+    - repository: current
+      type: git
+      name: function-csharp
+      ref: develop 
+
+trigger:
+  branches:
+    include:
+      - develop
+      - release/esteira
+  paths:
+    include:
+      - /src/*
+
+pool:
+  vmImage: windows-latest
+
+
+stages:
+  - template: starter-pipeline.yml@templates
+    parameters:
+      projectName: function-csharp
+      idValueStream: vs7
+      workspaceFolder: "src"
+      language: "dotnet"
+      languageVersion: "3.x"
+      appType: "function"

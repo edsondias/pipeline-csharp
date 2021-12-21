@@ -1,0 +1,6 @@
+variables:
+  appName: "azu-func-tu-devops"
+  slotName: ""
+  resourceGroupName: ""
+  
+  
